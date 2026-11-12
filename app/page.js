@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Overview from "./components/Overview";
 import Transactions from "./components/Transactions";
+import Categories from "./components/Categories";
 
 import styles from "./page.module.css";
 
@@ -133,6 +134,28 @@ export default function Home() {
     ]);
   }
 
+  function handleUpdateCategory(updatedCategory) {
+    setCategories((previous) =>
+      previous.map((category) =>
+        category.id === updatedCategory.id
+          ? updatedCategory
+          : category
+      )
+    );
+  }
+
+  function handleDeleteCategory(categoryId) {
+    const isUsed = expenses.some(
+      (expense) => expense.categoryId === categoryId
+    );
+
+    if (isUsed || categoryId === "other") return;
+
+    setCategories((previous) =>
+      previous.filter((category) => category.id !== categoryId)
+    );
+  }
+
   const currentSection = sections[activeSection];
 
   return (
@@ -194,10 +217,19 @@ export default function Home() {
                 />
               )}
 
-              {(activeSection === "categories" ||
-                activeSection === "analytics") && (
+              {activeSection === "categories" && (
+                <Categories
+                  expenses={expenses}
+                  categories={categories}
+                  onAddCategory={handleAddCategory}
+                  onUpdateCategory={handleUpdateCategory}
+                  onDeleteCategory={handleDeleteCategory}
+                />
+              )}
+
+              {activeSection === "analytics" && (
                 <div className={styles.placeholder}>
-                  <h2>{currentSection.title}</h2>
+                  <h2>Analytics</h2>
                   <p>
                     We're getting this section ready.
                     Its features will appear here.
