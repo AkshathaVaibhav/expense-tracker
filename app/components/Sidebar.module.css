@@ -1,0 +1,136 @@
+
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #eeeaf8;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 55px;
+}
+
+.logo {
+  width: 43px;
+  height: 43px;
+  border-radius: 14px;
+  background: #7664d8;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.brand h2 {
+  font-size: 16px;
+  color: #29243c;
+  margin: 0;
+}
+
+.brand p {
+  font-size: 11px;
+  color: #9691a7;
+  margin: 4px 0 0;
+}
+
+.menuLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #aaa5b8;
+  margin: 0 0 15px 10px;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 13px 14px;
+  border: none;
+  border-radius: 11px;
+  background: transparent;
+  color: #777287;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navItem:hover {
+  background: #f6f4fc;
+  color: #6653c7;
+}
+
+.active {
+  background: #efecfc;
+  color: #6653c7;
+  font-weight: 600;
+}
+
+.icon {
+  width: 22px;
+  font-size: 19px;
+  text-align: center;
+}
+
+.sidebarFooter {
+  margin-top: auto;
+  padding: 15px 10px;
+  border-top: 1px solid #f0edf6;
+  color: #aaa5b8;
+  font-size: 11px;
+}
+
+.sidebarFooter p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 15px;
+    border-right: none;
+    border-bottom: 1px solid #eeeaf8;
+  }
+
+  .brand {
+    margin-bottom: 20px;
+  }
+
+  .navigation {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 6px;
+  }
+
+  .navItem {
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 85px;
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  .sidebarFooter,
+  .menuLabel {
+    display: none;
+  }
+}
