@@ -1,0 +1,415 @@
+
+.transactions {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+.summaryRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.summaryCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #eeeaf5;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(44, 35, 75, 0.04);
+}
+
+.summaryIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: #f0edff;
+  color: #7966d8;
+  font-size: 23px;
+}
+
+.amountIcon {
+  background: #e9f8f2;
+  color: #299b72;
+}
+
+.summaryCard p {
+  margin: 0 0 5px;
+  color: #777187;
+  font-size: 13px;
+}
+
+.summaryCard strong {
+  display: block;
+  color: #302b40;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.summaryCard small {
+  display: block;
+  margin-top: 4px;
+  color: #9993a5;
+  font-size: 11px;
+}
+
+.transactionCard {
+  min-width: 0;
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #eeeaf5;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(44, 35, 75, 0.04);
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 23px;
+}
+
+.heading h2 {
+  margin: 0;
+  color: #302b40;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.heading p {
+  margin: 6px 0 0;
+  color: #898395;
+  font-size: 13px;
+}
+
+.exportButton {
+  padding: 10px 15px;
+  border: 1px solid #e5e0f5;
+  border-radius: 10px;
+  background: #f8f6ff;
+  color: #705dc8;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.exportButton:hover:not(:disabled) {
+  background: #eeeaff;
+  border-color: #cfc5f5;
+}
+
+.exportButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 190px 170px;
+  gap: 12px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  padding: 0 13px;
+  border: 1px solid #e9e5ef;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.searchBox span {
+  color: #9289a5;
+  font-size: 23px;
+}
+
+.searchBox input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #393448;
+  font: inherit;
+  font-size: 13px;
+}
+
+.searchBox input::placeholder {
+  color: #aaa5b3;
+}
+
+.filters select,
+.customRange input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #e9e5ef;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  color: #514b60;
+  font: inherit;
+  font-size: 13px;
+}
+
+.filters select:focus,
+.searchBox:focus-within,
+.customRange input:focus {
+  border-color: #a99be9;
+  box-shadow: 0 0 0 3px rgba(139, 123, 232, 0.1);
+}
+
+.customRange {
+  display: flex;
+  gap: 14px;
+  margin-top: 15px;
+}
+
+.customRange label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 190px;
+  color: #777187;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.resultsLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 22px 0 12px;
+  color: #898395;
+  font-size: 12px;
+}
+
+.resultsLine strong {
+  color: #514b60;
+}
+
+.clearButton {
+  padding: 5px 0;
+  border: none;
+  background: transparent;
+  color: #7865d9;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  color: #5744bd;
+  text-decoration: underline;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table thead {
+  background: #faf9fc;
+}
+
+.table th {
+  padding: 14px 12px;
+  color: #8b8597;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f0edf4;
+  color: #5f596c;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: #fcfbff;
+}
+
+.transactionName {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.categoryDot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.transactionName strong {
+  display: block;
+  max-width: 220px;
+  overflow: hidden;
+  color: #393448;
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+}
+
+.transactionName small {
+  display: block;
+  margin-top: 4px;
+  color: #a09aaa;
+  font-size: 11px;
+}
+
+.categoryName {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #f5f3fb;
+  color: #746b91;
+  font-size: 11px;
+}
+
+.dateCell {
+  color: #898395 !important;
+}
+
+.amountColumn,
+.amountCell {
+  text-align: right;
+}
+
+.amountCell {
+  color: #d66c78 !important;
+  font-weight: 650;
+}
+
+.actionColumn {
+  width: 65px;
+  text-align: center;
+}
+
+.deleteButton {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #d76b78;
+  font-size: 21px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.deleteButton:hover {
+  background: #ffe0e4;
+  color: #bd4354;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 230px;
+  padding: 30px 15px;
+  text-align: center;
+}
+
+.emptyState > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 14px;
+  border-radius: 17px;
+  background: #f1eeff;
+  color: #8372d9;
+  font-size: 25px;
+}
+
+.emptyState h3 {
+  margin: 0;
+  color: #393448;
+  font-size: 16px;
+}
+
+.emptyState p {
+  max-width: 320px;
+  margin: 8px 0 0;
+  color: #928c9e;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .filters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .searchBox {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .summaryRow {
+    grid-template-columns: 1fr;
+  }
+
+  .transactionCard {
+    padding: 17px;
+  }
+
+  .heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .searchBox {
+    grid-column: auto;
+  }
+
+  .customRange {
+    flex-direction: column;
+  }
+
+  .customRange label {
+    width: 100%;
+  }
+
+  .table {
+    min-width: 680px;
+  }
+}

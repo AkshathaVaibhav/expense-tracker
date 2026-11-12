@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import Sidebar from "./components/Sidebar";
 import Overview from "./components/Overview";
+import Transactions from "./components/Transactions";
 
 import styles from "./page.module.css";
 
@@ -47,18 +48,13 @@ export default function Home() {
 
   const [dataLoaded, setDataLoaded] = useState(false);
 
-  // Load saved data when the application opens
   useEffect(() => {
     setSelectedDate(getLocalDateString());
 
-    setExpenses(
-      readStorage(STORAGE_KEYS.expenses, [])
-    );
-
+    setExpenses(readStorage(STORAGE_KEYS.expenses, []));
     setCategories(
       readStorage(STORAGE_KEYS.categories, DEFAULT_CATEGORIES)
     );
-
     setMonthlySettings(
       readStorage(STORAGE_KEYS.monthlySettings, {})
     );
@@ -66,26 +62,21 @@ export default function Home() {
     setDataLoaded(true);
   }, []);
 
-  // Save changes whenever the data changes
   useEffect(() => {
     if (!dataLoaded) return;
-
     writeStorage(STORAGE_KEYS.expenses, expenses);
   }, [expenses, dataLoaded]);
 
   useEffect(() => {
     if (!dataLoaded) return;
-
     writeStorage(STORAGE_KEYS.categories, categories);
   }, [categories, dataLoaded]);
 
   useEffect(() => {
     if (!dataLoaded) return;
-
     writeStorage(STORAGE_KEYS.monthlySettings, monthlySettings);
   }, [monthlySettings, dataLoaded]);
 
-  // Get settings for the selected month
   const monthKey = selectedDate
     ? getMonthKey(selectedDate)
     : "";
@@ -95,7 +86,6 @@ export default function Home() {
     limit: 0,
   };
 
-  // Update monthly income
   function handleSetMonthlyIncome(value) {
     if (!monthKey) return;
 
@@ -108,7 +98,6 @@ export default function Home() {
     }));
   }
 
-  // Update expense limit
   function handleSetExpenseLimit(value) {
     if (!monthKey) return;
 
@@ -121,7 +110,6 @@ export default function Home() {
     }));
   }
 
-  // Add a new expense
   function handleAddExpense(expense) {
     setExpenses((previous) => [
       {
@@ -132,7 +120,12 @@ export default function Home() {
     ]);
   }
 
-  // Add a new category
+  function handleDeleteExpense(expenseId) {
+    setExpenses((previous) =>
+      previous.filter((expense) => expense.id !== expenseId)
+    );
+  }
+
   function handleAddCategory(category) {
     setCategories((previous) => [
       ...previous,
@@ -193,7 +186,16 @@ export default function Home() {
                 />
               )}
 
-              {activeSection !== "overview" && (
+              {activeSection === "transactions" && (
+                <Transactions
+                  expenses={expenses}
+                  categories={categories}
+                  onDeleteExpense={handleDeleteExpense}
+                />
+              )}
+
+              {(activeSection === "categories" ||
+                activeSection === "analytics") && (
                 <div className={styles.placeholder}>
                   <h2>{currentSection.title}</h2>
                   <p>
