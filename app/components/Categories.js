@@ -1,17 +1,10 @@
+
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import styles from "./Categories.module.css";
 
 const DEFAULT_COLOR = "#8B5CF6";
-
-function formatMoney(amount) {
-  return new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 2,
-  }).format(amount);
-}
 
 export default function Categories({
   expenses = [],
@@ -25,31 +18,6 @@ export default function Categories({
   const [name, setName] = useState("");
   const [color, setColor] = useState(DEFAULT_COLOR);
   const [error, setError] = useState("");
-
-  const categoryStats = useMemo(() => {
-    return categories
-      .map((category) => {
-        const categoryExpenses = expenses.filter(
-          (expense) => expense.categoryId === category.id
-        );
-
-        const total = categoryExpenses.reduce(
-          (sum, expense) => sum + Number(expense.amount || 0),
-          0
-        );
-
-        return {
-          ...category,
-          total,
-          transactionCount: categoryExpenses.length,
-        };
-      })
-      .sort((a, b) => {
-        if (a.id === "other") return 1;
-        if (b.id === "other") return -1;
-        return a.name.localeCompare(b.name);
-      });
-  }, [categories, expenses]);
 
   function openAddModal() {
     setEditingCategory(null);
@@ -118,7 +86,7 @@ export default function Categories({
 
     if (isUsed) {
       window.alert(
-        "This category has existing transactions. It cannot be deleted."
+        "This category has existing transactions and cannot be deleted."
       );
       return;
     }
@@ -128,21 +96,23 @@ export default function Categories({
       return;
     }
 
-    const confirmed = window.confirm(
-      `Are you sure you want to delete "${category.name}"?`
-    );
-
-    if (confirmed) {
+    if (window.confirm(`Delete "${category.name}"?`)) {
       onDeleteCategory?.(category.id);
     }
   }
+
+  const sortedCategories = [...categories].sort((a, b) => {
+    if (a.id === "other") return 1;
+    if (b.id === "other") return -1;
+    return a.name.localeCompare(b.name);
+  });
 
   return (
     <section className={styles.categoriesPage}>
       <div className={styles.pageHeader}>
         <div>
           <h2>Your Categories</h2>
-          <p>Organise and manage your spending categories.</p>
+          <p>Manage your spending categories.</p>
         </div>
 
         <button
@@ -154,71 +124,45 @@ export default function Categories({
         </button>
       </div>
 
-      <div className={styles.categoryGrid}>
-        {categoryStats.map((category) => {
-          const isUsed = category.transactionCount > 0;
+      <div className={styles.categoryList}>
+        {sortedCategories.map((category) => {
+          const isUsed = expenses.some(
+            (expense) => expense.categoryId === category.id
+          );
+
+          const cannotDelete = isUsed || category.id === "other";
 
           return (
-            <article className={styles.categoryCard} key={category.id}>
-              <div className={styles.cardTop}>
-                <div
-                  className={styles.categoryIcon}
-                  style={{
-                    backgroundColor: `${category.color}20`,
-                    color: category.color,
-                  }}
-                >
-                  <span />
-                </div>
-
-                <div className={styles.cardActions}>
-                  <button
-                    type="button"
-                    title="Edit category"
-                    aria-label={`Edit ${category.name}`}
-                    onClick={() => openEditModal(category)}
-                  >
-                    <span className="editIcon">✎</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    title={
-                      category.id === "other"
-                        ? "Other cannot be deleted"
-                        : isUsed
-                          ? "Category is being used"
-                          : "Delete category"
-                    }
-                    aria-label={`Delete ${category.name}`}
-                    disabled={isUsed || category.id === "other"}
-                    onClick={() => handleDelete(category)}
-                  >
-                    <span>×</span>
-                  </button>
-                </div>
-              </div>
-
+            <div className={styles.categoryRow} key={category.id}>
               <h3>{category.name}</h3>
 
-              <div className={styles.categoryDetails}>
-                <div>
-                  <span>Total spent</span>
-                  <strong>{formatMoney(category.total)}</strong>
-                </div>
+              <div className={styles.cardActions}>
+                <button
+                  type="button"
+                  title="Edit category"
+                  aria-label={`Edit ${category.name}`}
+                  onClick={() => openEditModal(category)}
+                >
+                  ✎
+                </button>
 
-                <div>
-                  <span>Transactions</span>
-                  <strong>{category.transactionCount}</strong>
-                </div>
+                <button
+                  type="button"
+                  title={
+                    category.id === "other"
+                      ? "Other cannot be deleted"
+                      : isUsed
+                        ? "Category is being used"
+                        : "Delete category"
+                  }
+                  aria-label={`Delete ${category.name}`}
+                  disabled={cannotDelete}
+                  onClick={() => handleDelete(category)}
+                >
+                  ×
+                </button>
               </div>
-
-              {isUsed && (
-                <div className={styles.usageNote}>
-                  This category is currently in use
-                </div>
-              )}
-            </article>
+            </div>
           );
         })}
       </div>
@@ -236,7 +180,7 @@ export default function Categories({
                 </h2>
                 <p>
                   {editingCategory
-                    ? "Update your category details."
+                    ? "Update your category name and colour."
                     : "Create a new spending category."}
                 </p>
               </div>
@@ -253,6 +197,7 @@ export default function Categories({
 
             <form onSubmit={handleSubmit}>
               <label htmlFor="categoryName">Category Name</label>
+
               <input
                 id="categoryName"
                 type="text"
@@ -264,6 +209,7 @@ export default function Categories({
               />
 
               <label htmlFor="categoryColor">Choose Colour</label>
+
               <div className={styles.colorPicker}>
                 <input
                   id="categoryColor"

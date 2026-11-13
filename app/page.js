@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import Analytics from "./components/Analytics";
 import Sidebar from "./components/Sidebar";
 import Overview from "./components/Overview";
 import Transactions from "./components/Transactions";
@@ -228,13 +228,12 @@ export default function Home() {
               )}
 
               {activeSection === "analytics" && (
-                <div className={styles.placeholder}>
-                  <h2>Analytics</h2>
-                  <p>
-                    We're getting this section ready.
-                    Its features will appear here.
-                  </p>
-                </div>
+                <Analytics
+                  expenses={expenses}
+                  categories={categories}
+                  monthlySettings={monthlySettings}
+                  selectedDate={selectedDate}
+                />
               )}
             </>
           )}
