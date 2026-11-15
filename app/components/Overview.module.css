@@ -71,21 +71,27 @@
 }
 
 .editIcon {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   background: transparent;
-  color: #8b7be8;
-  font-size: 20px;
+  color: #111111;
   cursor: pointer;
-  transform: rotate(180deg);
-  transition: background 0.2s, color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .editIcon:hover {
-  background: #f0edff;
-  color: #604bc5;
+  color: #7865d9;
+}
+
+.editIcon svg {
+  width: 24px;
+  height: 24px;
 }
 
 .summaryCard > strong {

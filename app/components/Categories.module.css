@@ -108,6 +108,22 @@
   color: #755bd8;
 }
 
+.cardActions .editButton {
+  background: transparent;
+  color: #111111;
+  padding: 0;
+}
+
+.cardActions .editButton:hover:not(:disabled) {
+  background: transparent;
+  color: #7865d9;
+}
+
+.cardActions .editButton svg {
+  width: 24px;
+  height: 24px;
+}
+
 .cardActions button:disabled {
   opacity: 0.35;
   cursor: not-allowed;

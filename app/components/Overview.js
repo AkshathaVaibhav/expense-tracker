@@ -4,6 +4,25 @@
 import { useMemo, useState } from "react";
 import styles from "./Overview.module.css";
 
+function PencilIcon() {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z" />
+    </svg>
+  );
+}
+
 export default function Overview({
   expenses = [],
   categories = [],
@@ -51,7 +70,7 @@ export default function Overview({
 
   const alphabeticalCategories = useMemo(
     () =>
-        [...categories].sort((a, b) => {
+      [...categories].sort((a, b) => {
         const aIsOther = a.name.trim().toLowerCase() === "other";
         const bIsOther = b.name.trim().toLowerCase() === "other";
 
@@ -59,7 +78,7 @@ export default function Overview({
         if (!aIsOther && bIsOther) return -1;
 
         return a.name.localeCompare(b.name);
-        }),
+      }),
     [categories]
   );
 
@@ -148,7 +167,6 @@ export default function Overview({
 
   return (
     <div className={styles.overview}>
-      {/* Financial summary */}
       <div className={styles.summaryGrid}>
         <div className={styles.summaryCard}>
           <div className={styles.summaryTop}>
@@ -160,12 +178,13 @@ export default function Overview({
             </div>
 
             <button
+              type="button"
               className={styles.editIcon}
               title="Edit monthly income"
               aria-label="Edit monthly income"
               onClick={() => openSettingEditor("income", monthlyIncome)}
             >
-              ✎
+              <PencilIcon />
             </button>
           </div>
 
@@ -183,12 +202,13 @@ export default function Overview({
             </div>
 
             <button
+              type="button"
               className={styles.editIcon}
               title="Edit expense limit"
               aria-label="Edit expense limit"
               onClick={() => openSettingEditor("limit", expenseLimit)}
             >
-              ✎
+              <PencilIcon />
             </button>
           </div>
 
@@ -239,9 +259,9 @@ export default function Overview({
         </div>
       </div>
 
-      {/* Main actions */}
       <div className={styles.actionGrid}>
         <button
+          type="button"
           className={`${styles.actionCard} ${styles.primaryAction}`}
           onClick={() => setActiveForm("expense")}
         >
@@ -254,6 +274,7 @@ export default function Overview({
         </button>
 
         <button
+          type="button"
           className={styles.actionCard}
           onClick={() => setActiveForm("category")}
         >
@@ -266,7 +287,6 @@ export default function Overview({
         </button>
       </div>
 
-      {/* Monthly budget */}
       {Number(expenseLimit) > 0 && (
         <div className={styles.budgetCard}>
           <div className={styles.budgetHeading}>
@@ -325,7 +345,6 @@ export default function Overview({
         </div>
       )}
 
-      {/* Category-wise spending */}
       <div className={styles.categoryCard}>
         <div className={styles.sectionHeading}>
           <div>
@@ -369,7 +388,6 @@ export default function Overview({
         )}
       </div>
 
-      {/* Forms */}
       {activeForm && (
         <div
           className={styles.modalBackdrop}
@@ -394,6 +412,7 @@ export default function Overview({
                 type="button"
                 className={styles.closeButton}
                 onClick={() => setActiveForm("")}
+                aria-label="Close"
               >
                 ×
               </button>
