@@ -379,13 +379,15 @@
   }
 }
 
+
+
 @media (max-width: 600px) {
   .summaryRow {
     grid-template-columns: 1fr;
   }
 
   .transactionCard {
-    padding: 17px;
+    padding: 12px;
   }
 
   .heading {
@@ -409,7 +411,99 @@
     width: 100%;
   }
 
+  /* Mobile transaction cards */
+  .tableWrapper {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   .table {
-    min-width: 680px;
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  .table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid #e5e9e5;
+    border-radius: 12px;
+    background: #ffffff;
+  }
+
+  .table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    min-width: 0;
+    padding: 5px 0;
+    border: none;
+    white-space: normal;
+    font-size: 11px;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    color: #898395;
+    font-size: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .table td:first-child {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    border-bottom: 1px solid #f0edf4;
+    padding-bottom: 10px;
+  }
+
+  .transactionName {
+    min-width: 0;
+    gap: 7px;
+  }
+
+  .transactionName strong {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    font-size: 12px;
+  }
+
+  .transactionName small {
+    font-size: 10px;
+  }
+
+  .categoryName {
+    padding: 4px 7px;
+    font-size: 10px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .amountCell {
+    color: #d66c78 !important;
+    font-size: 11px !important;
+    font-weight: 700;
+  }
+
+  .actionColumn {
+    width: auto;
+  }
+
+  .deleteButton {
+    width: 26px;
+    height: 26px;
   }
 }

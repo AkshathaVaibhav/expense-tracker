@@ -307,7 +307,7 @@ export default function Transactions({
 
                   return (
                     <tr key={expense.id}>
-                      <td>
+                      <td data-label="Transaction">
                         <div className={styles.transactionName}>
                           <span
                             className={styles.categoryDot}
@@ -325,21 +325,27 @@ export default function Transactions({
                         </div>
                       </td>
 
-                      <td>
+                      <td data-label="Category">
                         <span className={styles.categoryName}>
                           {category?.name || "Unknown"}
                         </span>
                       </td>
 
-                      <td className={styles.dateCell}>
+                      <td
+                        data-label="Date"
+                        className={styles.dateCell}
+                      >
                         {formatDate(expense.date)}
                       </td>
 
-                      <td className={styles.amountCell}>
+                      <td
+                        data-label="Amount"
+                        className={styles.amountCell}
+                      >
                         − {formatMoney(expense.amount)}
                       </td>
 
-                      <td>
+                      <td data-label="Action">
                         <button
                           type="button"
                           className={styles.deleteButton}
