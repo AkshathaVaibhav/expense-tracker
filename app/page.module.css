@@ -1,3 +1,4 @@
+
 .dashboard {
   display: flex;
   min-height: 100vh;
@@ -33,6 +34,32 @@
 
 .header p {
   margin: 8px 0 0;
+  color: #9691a7;
+  font-size: 13px;
+}
+
+.mobileBrand {
+  display: none;
+}
+
+.appLogo {
+  width: 58px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 17px;
+  flex-shrink: 0;
+}
+
+.appBrandText h2 {
+  margin: 0;
+  color: #29243c;
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+}
+
+.appBrandText p {
+  margin: 5px 0 0;
   color: #9691a7;
   font-size: 13px;
 }
@@ -133,9 +160,17 @@
     margin-bottom: 25px;
   }
 
+  .mobileBrand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 5px;
+  }
+
   .headerTop {
     width: 100%;
     align-items: center;
+    gap: 14px;
   }
 
   .menuButton {
@@ -155,6 +190,19 @@
 @media (max-width: 380px) {
   .main {
     padding: 18px 13px;
+  }
+
+  .appLogo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .appBrandText h2 {
+    font-size: 18px;
+  }
+
+  .appBrandText p {
+    font-size: 12px;
   }
 
   .header h1 {

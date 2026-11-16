@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -174,6 +175,21 @@ export default function Home() {
 
       <main className={styles.main}>
         <header className={styles.header}>
+
+          {/* Mobile app branding */}
+          <div className={styles.mobileBrand}>
+            <img
+              src="/icon-192.png"
+              alt="Kubera logo"
+              className={styles.appLogo}
+            />
+
+            <div className={styles.appBrandText}>
+              <h2>Kubera Expense Tracker</h2>
+              <p>Manage your money</p>
+            </div>
+          </div>
+
           <div className={styles.headerTop}>
             <button
               type="button"

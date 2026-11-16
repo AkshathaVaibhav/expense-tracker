@@ -1,3 +1,4 @@
+
 "use client";
 
 import styles from "./Sidebar.module.css";
@@ -33,10 +34,14 @@ export default function Sidebar({
         aria-label="Main navigation"
       >
         <div className={styles.brand}>
-          <div className={styles.logo}>₹</div>
+          <img
+            src="/icon-192.png"
+            alt="Kubera logo"
+            className={styles.logo}
+          />
 
-          <div>
-            <h2>Expense Tracker</h2>
+          <div className={styles.brandText}>
+            <h2>Kubera Expense Tracker</h2>
             <p>Manage your money</p>
           </div>
 
