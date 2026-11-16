@@ -1,4 +1,3 @@
-
 "use client";
 
 import styles from "./Sidebar.module.css";
@@ -10,38 +9,69 @@ const menuItems = [
   { id: "analytics", label: "Analytics", icon: "▥" },
 ];
 
-export default function Sidebar({ activeSection, onNavigate }) {
+export default function Sidebar({
+  activeSection,
+  onNavigate,
+  isOpen,
+  onClose,
+}) {
   return (
-    <aside className={styles.sidebar}>
-      <div className={styles.brand}>
-        <div className={styles.logo}>₹</div>
-        <div>
-          <h2>Expense Tracker</h2>
-          <p>Manage your money</p>
-        </div>
-      </div>
+    <>
+      {isOpen && (
+        <button
+          type="button"
+          className={styles.backdrop}
+          onClick={onClose}
+          aria-label="Close navigation menu"
+        />
+      )}
 
-      <div className={styles.menuLabel}>MENU</div>
+      <aside
+        className={`${styles.sidebar} ${
+          isOpen ? styles.sidebarOpen : ""
+        }`}
+        aria-label="Main navigation"
+      >
+        <div className={styles.brand}>
+          <div className={styles.logo}>₹</div>
 
-      <nav className={styles.navigation}>
-        {menuItems.map((item) => (
+          <div>
+            <h2>Expense Tracker</h2>
+            <p>Manage your money</p>
+          </div>
+
           <button
-            key={item.id}
             type="button"
-            className={`${styles.navItem} ${
-              activeSection === item.id ? styles.active : ""
-            }`}
-            onClick={() => onNavigate(item.id)}
+            className={styles.closeButton}
+            onClick={onClose}
+            aria-label="Close menu"
           >
-            <span className={styles.icon}>{item.icon}</span>
-            <span>{item.label}</span>
+            ×
           </button>
-        ))}
-      </nav>
+        </div>
 
-      <div className={styles.sidebarFooter}>
-        <p>Your money, your control.</p>
-      </div>
-    </aside>
+        <div className={styles.menuLabel}>MENU</div>
+
+        <nav className={styles.navigation}>
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`${styles.navItem} ${
+                activeSection === item.id ? styles.active : ""
+              }`}
+              onClick={() => onNavigate(item.id)}
+            >
+              <span className={styles.icon}>{item.icon}</span>
+              <span>{item.label}</span>
+            </button>
+          ))}
+        </nav>
+
+        <div className={styles.sidebarFooter}>
+          <p>Your money, your control.</p>
+        </div>
+      </aside>
+    </>
   );
 }

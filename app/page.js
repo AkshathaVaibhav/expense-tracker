@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -41,6 +40,7 @@ const sections = {
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("overview");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState("");
   const [expenses, setExpenses] = useState([]);
@@ -86,6 +86,11 @@ export default function Home() {
     income: 0,
     limit: 0,
   };
+
+  function handleNavigate(section) {
+    setActiveSection(section);
+    setMenuOpen(false);
+  }
 
   function handleSetMonthlyIncome(value) {
     if (!monthKey) return;
@@ -162,14 +167,30 @@ export default function Home() {
     <div className={styles.dashboard}>
       <Sidebar
         activeSection={activeSection}
-        onNavigate={setActiveSection}
+        onNavigate={handleNavigate}
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
       />
 
       <main className={styles.main}>
         <header className={styles.header}>
-          <div>
-            <h1>{currentSection.title}</h1>
-            <p>{currentSection.subtitle}</p>
+          <div className={styles.headerTop}>
+            <button
+              type="button"
+              className={styles.menuButton}
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open navigation menu"
+              aria-expanded={menuOpen}
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+
+            <div>
+              <h1>{currentSection.title}</h1>
+              <p>{currentSection.subtitle}</p>
+            </div>
           </div>
 
           <div className={styles.dateBox}>
