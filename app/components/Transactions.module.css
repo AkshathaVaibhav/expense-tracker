@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 22px;
   width: 100%;
+  min-width: 0;
 }
 
 .summaryRow {
@@ -219,6 +220,7 @@
 
 .tableWrapper {
   width: 100%;
+  min-width: 0;
   overflow-x: auto;
 }
 
@@ -226,6 +228,7 @@
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  table-layout: auto;
 }
 
 .table thead {
@@ -260,6 +263,7 @@
   display: flex;
   align-items: center;
   gap: 11px;
+  min-width: 0;
 }
 
 .categoryDot {
@@ -379,8 +383,6 @@
   }
 }
 
-
-
 @media (max-width: 600px) {
   .summaryRow {
     grid-template-columns: 1fr;
@@ -411,91 +413,98 @@
     width: 100%;
   }
 
-  /* Mobile transaction cards */
+  /* Keep the complete table visible on mobile */
   .tableWrapper {
     width: 100%;
     overflow-x: hidden;
   }
 
   .table {
-    display: block;
     width: 100%;
     min-width: 0;
+    table-layout: fixed;
   }
 
-  .table thead {
-    display: none;
-  }
-
-  .table tbody {
-    display: grid;
-    gap: 12px;
-  }
-
-  .table tbody tr {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    padding: 12px;
-    border: 1px solid #e5e9e5;
-    border-radius: 12px;
-    background: #ffffff;
+  .table th {
+    padding: 9px 3px;
+    font-size: 9px;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .table td {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
-    min-width: 0;
-    padding: 5px 0;
-    border: none;
-    white-space: normal;
-    font-size: 11px;
-  }
-
-  .table td::before {
-    content: attr(data-label);
-    color: #898395;
+    padding: 12px 3px;
     font-size: 10px;
-    font-weight: 600;
-    flex-shrink: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
-  .table td:first-child {
-    grid-column: 1 / -1;
-    justify-content: flex-start;
-    border-bottom: 1px solid #f0edf4;
-    padding-bottom: 10px;
+  /* Column proportions */
+  .table th:nth-child(1),
+  .table td:nth-child(1) {
+    width: 27%;
+  }
+
+  .table th:nth-child(2),
+  .table td:nth-child(2) {
+    width: 20%;
+  }
+
+  .table th:nth-child(3),
+  .table td:nth-child(3) {
+    width: 18%;
+  }
+
+  .table th:nth-child(4),
+  .table td:nth-child(4) {
+    width: 25%;
+  }
+
+  .table th:nth-child(5),
+  .table td:nth-child(5) {
+    width: 10%;
+    text-align: center;
   }
 
   .transactionName {
-    min-width: 0;
-    gap: 7px;
+    gap: 4px;
+    align-items: flex-start;
   }
 
   .transactionName strong {
     max-width: 100%;
-    overflow-wrap: anywhere;
+    font-size: 10px;
     white-space: normal;
-    font-size: 12px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .transactionName small {
-    font-size: 10px;
+    font-size: 9px;
+  }
+
+  .categoryDot {
+    width: 7px;
+    height: 7px;
+    margin-top: 3px;
   }
 
   .categoryName {
-    padding: 4px 7px;
-    font-size: 10px;
+    padding: 4px 3px;
+    font-size: 9px;
     white-space: normal;
     overflow-wrap: anywhere;
   }
 
+  .dateCell {
+    font-size: 9px !important;
+  }
+
   .amountCell {
-    color: #d66c78 !important;
-    font-size: 11px !important;
+    font-size: 9px !important;
     font-weight: 700;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .actionColumn {
@@ -503,7 +512,8 @@
   }
 
   .deleteButton {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
   }
 }
