@@ -8,13 +8,13 @@
 
 .intro h2 {
   margin: 0;
-  color: #29273d;
+  color: #073B2E;
   font-size: 19px;
 }
 
 .intro p {
   margin: 7px 0 0;
-  color: #858397;
+  color: #426B5D;
   font-size: 13px;
 }
 
@@ -30,27 +30,27 @@
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  border: 1px solid #eeedf4;
+  border: 1px solid #D0E1D6;
   border-radius: 15px;
-  background: #fff;
-  box-shadow: 0 3px 12px rgba(40, 35, 75, 0.035);
+  background: #FFFFFF;
+  box-shadow: 0 3px 12px rgba(7, 59, 46, 0.04);
 }
 
 .summaryLabel {
-  color: #858397;
+  color: #426B5D;
   font-size: 12px;
 }
 
 .summaryCard strong {
   overflow-wrap: anywhere;
-  color: #302d46;
+  color: #073B2E;
   font-size: 21px;
   font-weight: 700;
 }
 
 .summaryHint {
   overflow: hidden;
-  color: #aaa7b7;
+  color: #426B5D;
   font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -67,10 +67,10 @@
 .insightsCard {
   min-width: 0;
   padding: 21px;
-  border: 1px solid #eeedf4;
+  border: 1px solid #D0E1D6;
   border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 3px 12px rgba(40, 35, 75, 0.035);
+  background: #FFFFFF;
+  box-shadow: 0 3px 12px rgba(7, 59, 46, 0.04);
 }
 
 .cardHeading {
@@ -83,14 +83,14 @@
 
 .cardHeading h3 {
   margin: 0;
-  color: #302d46;
+  color: #073B2E;
   font-size: 15px;
   font-weight: 650;
 }
 
 .cardHeading p {
   margin: 6px 0 0;
-  color: #9693a6;
+  color: #426B5D;
   font-size: 11px;
 }
 
@@ -115,13 +115,13 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  color: #77748b;
+  color: #426B5D;
   font-size: 12px;
 }
 
 .categoryLine strong {
   margin-left: auto;
-  color: #39364e;
+  color: #073B2E;
   font-size: 12px;
   font-weight: 600;
 }
@@ -139,7 +139,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  color: #9996a8;
+  color: #426B5D;
   font-size: 12px;
   text-align: center;
   line-height: 1.7;
@@ -165,12 +165,12 @@
 }
 
 .budgetNumbers span {
-  color: #9290a2;
+  color: #426B5D;
   font-size: 11px;
 }
 
 .budgetNumbers strong {
-  color: #39364e;
+  color: #073B2E;
   font-size: 16px;
 }
 
@@ -179,18 +179,18 @@
   height: 11px;
   overflow: hidden;
   border-radius: 20px;
-  background: #f0eef7;
+  background: #E7F1EB;
 }
 
 .progressFill {
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #9b83ec, #7358d4);
+  background: linear-gradient(90deg, #46b01c92, #12439e);
   transition: width 0.3s ease;
 }
 
 .overBudget {
-  background: #e87979;
+  background: #C76B4B;
 }
 
 .budgetFooter {
@@ -203,11 +203,11 @@
 }
 
 .budgetFooter strong {
-  color: #755bd8;
+  color: #073B2E;
 }
 
 .budgetFooter span {
-  color: #9290a2;
+  color: #426B5D;
 }
 
 .insightList {
@@ -229,8 +229,8 @@
   display: grid;
   place-items: center;
   border-radius: 10px;
-  background: #f1edff;
-  color: #755bd8;
+  background: #F0D994;
+  color: #073B2E;
   font-size: 17px;
   font-weight: 600;
 }
@@ -238,13 +238,13 @@
 .insightItem strong {
   display: block;
   margin: 2px 0 5px;
-  color: #39364e;
+  color: #073B2E;
   font-size: 12px;
 }
 
 .insightItem p {
   margin: 0;
-  color: #9290a2;
+  color: #426B5D;
   font-size: 11px;
   line-height: 1.6;
 }
@@ -256,31 +256,31 @@
   flex-wrap: wrap;
   gap: 15px;
   padding: 20px 22px;
-  border: 1px solid #e9e4fa;
+  border: 1px solid #E2CA83;
   border-radius: 15px;
-  background: #f9f7ff;
+  background: #F5EACB;
 }
 
 .projectionCard h3 {
   margin: 0;
-  color: #39334f;
+  color: #073B2E;
   font-size: 14px;
 }
 
 .projectionCard p {
   margin: 6px 0 0;
-  color: #89849d;
+  color: #426B5D;
   font-size: 11px;
 }
 
 .projectionCard strong {
-  color: #755bd8;
+  color: #073B2E;
   font-size: 21px;
 }
 
 .projectionCard > span {
   width: 100%;
-  color: #9690a9;
+  color: #426B5D;
   font-size: 10px;
 }
 

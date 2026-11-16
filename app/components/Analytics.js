@@ -21,15 +21,27 @@ import {
 import styles from "./Analytics.module.css";
 
 const COLORS = [
-  "#8B5CF6",
-  "#3B82F6",
-  "#F59E0B",
-  "#EC4899",
-  "#10B981",
-  "#F97316",
-  "#64748B",
-  "#06B6D4",
+  "#073B2E",
+  "#D4AF55",
+  "#426B5D",
+  "#B58B35",
+  "#7A9B87",
+  "#A8C6B3",
+  "#C49A45",
+  "#54796A",
 ];
+
+const GRID_COLOR = "#E7F1EB";
+const TEXT_COLOR = "#426B5D";
+const BORDER_COLOR = "#D0E1D6";
+
+const tooltipStyle = {
+  borderRadius: 10,
+  border: `1px solid ${BORDER_COLOR}`,
+  backgroundColor: "#FFFFFF",
+  color: "#073B2E",
+  fontSize: 12,
+};
 
 function parseDate(dateString) {
   const [year, month, day] = dateString.split("-").map(Number);
@@ -199,8 +211,6 @@ export default function Analytics({
       monthlyChange =
         ((totalSpent - previousMonthSpent) / previousMonthSpent) *
         100;
-    } else if (totalSpent > 0) {
-      monthlyChange = null;
     }
 
     const weekdayNames = [
@@ -388,6 +398,11 @@ export default function Analytics({
     }
   }
 
+  const axisStyle = {
+    fill: TEXT_COLOR,
+    fontSize: 11,
+  };
+
   return (
     <section className={styles.analyticsPage}>
       <div className={styles.intro}>
@@ -454,36 +469,36 @@ export default function Analytics({
                 <CartesianGrid
                   strokeDasharray="3 3"
                   vertical={false}
-                  stroke="#eeedf4"
+                  stroke={GRID_COLOR}
                 />
                 <XAxis
                   dataKey="month"
-                  tick={{ fill: "#9290a2", fontSize: 11 }}
+                  tick={axisStyle}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
                   tickFormatter={formatCompact}
-                  tick={{ fill: "#9290a2", fontSize: 10 }}
+                  tick={{ ...axisStyle, fontSize: 10 }}
                   axisLine={false}
                   tickLine={false}
                   width={65}
                 />
                 <Tooltip
                   formatter={(value) => formatMoney(value)}
-                  contentStyle={{
-                    borderRadius: 10,
-                    border: "1px solid #eeedf4",
-                    fontSize: 12,
-                  }}
+                  contentStyle={tooltipStyle}
                 />
                 <Line
                   type="monotone"
                   dataKey="expenses"
                   name="Expenses"
-                  stroke="#8065D8"
+                  stroke="#073B2E"
                   strokeWidth={3}
-                  dot={{ r: 4, fill: "#8065D8" }}
+                  dot={{
+                    r: 4,
+                    fill: "#F0D994",
+                    stroke: "#073B2E",
+                  }}
                   activeDot={{ r: 6 }}
                 />
               </LineChart>
@@ -515,23 +530,25 @@ export default function Analytics({
                       {categoryData.map((category, index) => (
                         <Cell
                           key={category.name}
-                          fill={category.color || COLORS[index % COLORS.length]}
+                          fill={
+                            category.color ||
+                            COLORS[index % COLORS.length]
+                          }
                           stroke="none"
                         />
                       ))}
                     </Pie>
                     <Tooltip
                       formatter={(value) => formatMoney(value)}
-                      contentStyle={{
-                        borderRadius: 10,
-                        border: "1px solid #eeedf4",
-                        fontSize: 12,
-                      }}
+                      contentStyle={tooltipStyle}
                     />
                     <Legend
                       verticalAlign="bottom"
                       iconType="circle"
-                      wrapperStyle={{ fontSize: 11 }}
+                      wrapperStyle={{
+                        fontSize: 11,
+                        color: TEXT_COLOR,
+                      }}
                     />
                   </PieChart>
                 </ResponsiveContainer>
@@ -547,7 +564,8 @@ export default function Analytics({
                       className={styles.categoryDot}
                       style={{
                         backgroundColor:
-                          category.color || COLORS[index % COLORS.length],
+                          category.color ||
+                          COLORS[index % COLORS.length],
                       }}
                     />
                     <span>{category.name}</span>
@@ -579,40 +597,41 @@ export default function Analytics({
                 <CartesianGrid
                   strokeDasharray="3 3"
                   vertical={false}
-                  stroke="#eeedf4"
+                  stroke={GRID_COLOR}
                 />
                 <XAxis
                   dataKey="month"
-                  tick={{ fill: "#9290a2", fontSize: 11 }}
+                  tick={axisStyle}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
                   tickFormatter={formatCompact}
-                  tick={{ fill: "#9290a2", fontSize: 10 }}
+                  tick={{ ...axisStyle, fontSize: 10 }}
                   axisLine={false}
                   tickLine={false}
                   width={65}
                 />
                 <Tooltip
                   formatter={(value) => formatMoney(value)}
-                  contentStyle={{
-                    borderRadius: 10,
-                    border: "1px solid #eeedf4",
-                    fontSize: 12,
+                  contentStyle={tooltipStyle}
+                />
+                <Legend
+                  wrapperStyle={{
+                    fontSize: 11,
+                    color: TEXT_COLOR,
                   }}
                 />
-                <Legend wrapperStyle={{ fontSize: 11 }} />
                 <Bar
                   dataKey="income"
                   name="Income"
-                  fill="#45B9A2"
+                  fill="#46b01c92"
                   radius={[5, 5, 0, 0]}
                 />
                 <Bar
                   dataKey="expenses"
                   name="Expenses"
-                  fill="#8065D8"
+                  fill="#d45555e0"
                   radius={[5, 5, 0, 0]}
                 />
               </BarChart>
@@ -634,33 +653,29 @@ export default function Analytics({
                 <CartesianGrid
                   strokeDasharray="3 3"
                   vertical={false}
-                  stroke="#eeedf4"
+                  stroke={GRID_COLOR}
                 />
                 <XAxis
                   dataKey="day"
-                  tick={{ fill: "#9290a2", fontSize: 11 }}
+                  tick={axisStyle}
                   axisLine={false}
                   tickLine={false}
                 />
                 <YAxis
                   tickFormatter={formatCompact}
-                  tick={{ fill: "#9290a2", fontSize: 10 }}
+                  tick={{ ...axisStyle, fontSize: 10 }}
                   axisLine={false}
                   tickLine={false}
                   width={65}
                 />
                 <Tooltip
                   formatter={(value) => formatMoney(value)}
-                  contentStyle={{
-                    borderRadius: 10,
-                    border: "1px solid #eeedf4",
-                    fontSize: 12,
-                  }}
+                  contentStyle={tooltipStyle}
                 />
                 <Bar
                   dataKey="average"
                   name="Average spending"
-                  fill="#F2A65A"
+                  fill="#3973b6ad"
                   radius={[6, 6, 0, 0]}
                 />
               </BarChart>
@@ -733,7 +748,8 @@ export default function Analytics({
               {insights.map((insight, index) => (
                 <div className={styles.insightItem} key={index}>
                   <span className={styles.insightIcon}>
-                    {insight.icon === "up" || insight.icon === "warning"
+                    {insight.icon === "up" ||
+                    insight.icon === "warning"
                       ? "↗"
                       : insight.icon === "down"
                         ? "↘"

@@ -2,8 +2,8 @@
 .sidebar {
   width: 250px;
   min-height: 100vh;
-  background: #ffffff;
-  border-right: 1px solid #eeeaf8;
+  background: #073B2E;
+  border-right: 1px solid #245747;
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
@@ -32,14 +32,14 @@
 
 .brand h2 {
   font-size: 15px;
-  color: #29243c;
+  color: #FFFFFF;
   margin: 0;
   line-height: 1.35;
 }
 
 .brand p {
   font-size: 11px;
-  color: #9691a7;
+  color: #F0D994;
   margin: 4px 0 0;
 }
 
@@ -47,7 +47,7 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: #aaa5b8;
+  color: #F0D994;
   margin: 0 0 15px 10px;
 }
 
@@ -66,7 +66,7 @@
   border: none;
   border-radius: 11px;
   background: transparent;
-  color: #777287;
+  color: #F0D994;
   font-size: 14px;
   text-align: left;
   cursor: pointer;
@@ -74,13 +74,13 @@
 }
 
 .navItem:hover {
-  background: #f6f4fc;
-  color: #6653c7;
+  background: #F5EACB;
+  color: #073B2E;
 }
 
 .active {
-  background: #efecfc;
-  color: #6653c7;
+  background: #F0D994;
+  color: #073B2E;
   font-weight: 600;
 }
 
@@ -93,8 +93,8 @@
 .sidebarFooter {
   margin-top: auto;
   padding: 15px 10px;
-  border-top: 1px solid #f0edf6;
-  color: #aaa5b8;
+  border-top: 1px solid #245747;
+  color: #F0D994;
   font-size: 11px;
 }
 
@@ -121,8 +121,8 @@
     width: min(300px, 85vw);
     min-height: 100vh;
     padding: 25px 18px;
-    border-right: 1px solid #eeeaf8;
-    box-shadow: 8px 0 30px rgba(35, 25, 70, 0.08);
+    border-right: 1px solid #245747;
+    box-shadow: 8px 0 30px rgba(7, 59, 46, 0.2);
     transform: translateX(-110%);
     transition: transform 0.28s ease;
     overflow-y: auto;
@@ -155,8 +155,8 @@
     height: 32px;
     border: none;
     border-radius: 9px;
-    background: #f6f4fc;
-    color: #6653c7;
+    background: #F0D994;
+    color: #073B2E;
     font-size: 25px;
     cursor: pointer;
     flex-shrink: 0;
@@ -195,7 +195,7 @@
     height: 100%;
     padding: 0;
     border: none;
-    background: rgba(25, 20, 45, 0.35);
+    background: rgba(7, 59, 46, 0.45);
     cursor: pointer;
   }
 }
